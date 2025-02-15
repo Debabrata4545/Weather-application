@@ -3,100 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator</title>
+    <title>Weather App</title>
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
-        .calculator {
-            display: inline-block;
-            background: #222;
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
             padding: 20px;
             border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .screen {
-            width: 100%;
-            height: 50px;
-            font-size: 1.5em;
-            text-align: right;
+
+        input {
+            width: 80%;
             padding: 10px;
-        }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-        }
-        button {
-            padding: 15px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: none;
-            background: #444;
-            color: white;
+            margin: 10px 0;
+            border: 1px solid #ccc;
             border-radius: 5px;
         }
-        button:active {
-            background: #666;
+
+        button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #weather-info {
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" class="screen" id="screen" disabled>
-        <div class="buttons">
-            <button onclick="clearScreen()">C</button>
-            <button onclick="backspace()">⌫</button>
-            <button onclick="insert('(')">(</button>
-            <button onclick="insert(')')">)</button>
-            <button onclick="insert('/')">/</button>
-            
-            <button onclick="insert('7')">7</button>
-            <button onclick="insert('8')">8</button>
-            <button onclick="insert('9')">9</button>
-            <button onclick="insert('*')">*</button>
-            <button onclick="insert('Math.sin(')">sin</button>
-            
-            <button onclick="insert('4')">4</button>
-            <button onclick="insert('5')">5</button>
-            <button onclick="insert('6')">6</button>
-            <button onclick="insert('-')">-</button>
-            <button onclick="insert('Math.cos(')">cos</button>
-            
-            <button onclick="insert('1')">1</button>
-            <button onclick="insert('2')">2</button>
-            <button onclick="insert('3')">3</button>
-            <button onclick="insert('+')">+</button>
-            <button onclick="insert('Math.tan(')">tan</button>
-            
-            <button onclick="insert('0')">0</button>
-            <button onclick="insert('.')">.</button>
-            <button onclick="insert('Math.log10(')">log</button>
-            <button onclick="insert('Math.sqrt(')">√</button>
-            <button onclick="calculate()">=</button>
-        </div>
+    <div class="container">
+        <h1>Weather App</h1>
+        <input type="text" id="location" placeholder="Enter location (e.g., London)">
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="weather-info"></div>
     </div>
 
     <script>
-        function insert(value) {
-            document.getElementById("screen").value += value;
-        }
+        async function getWeather() {
+            const location = document.getElementById("location").value;
+            if (!location) {
+                alert("Please enter a location");
+                return;
+            }
 
-        function clearScreen() {
-            document.getElementById("screen").value = "";
-        }
+            const apiKey = "73fb6a961097481fb85124655250902";
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
 
-        function backspace() {
-            let screen = document.getElementById("screen");
-            screen.value = screen.value.slice(0, -1);
-        }
-
-        function calculate() {
-            let screen = document.getElementById("screen");
             try {
-                screen.value = eval(screen.value);
-            } catch {
-                screen.value = "Error";
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById("weather-info").innerHTML = "Location not found!";
+                } else {
+                    document.getElementById("weather-info").innerHTML = `
+                        <p><strong>Location:</strong> ${data.location.name}, ${data.location.country}</p>
+                        <p><strong>Temperature:</strong> ${data.current.temp_c}°C</p>
+                        <p><strong>Condition:</strong> ${data.current.condition.text}</p>
+                        <img src="${data.current.condition.icon}" alt="Weather Icon">
+                    `;
+                }
+            } catch (error) {
+                document.getElementById("weather-info").innerHTML = "Error fetching data!";
             }
         }
     </script>
