@@ -1,105 +1,131 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        .calculator {
-            display: inline-block;
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .screen {
-            width: 100%;
-            height: 50px;
-            font-size: 1.5em;
-            text-align: right;
-            padding: 10px;
-        }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-        }
-        button {
-            padding: 15px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: none;
-            background: #444;
-            color: white;
-            border-radius: 5px;
-        }
-        button:active {
-            background: #666;
-        }
-    </style>
+
+  <meta charset="UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Developergtm Happy Holi 2024</title>
+
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <div class="calculator">
-        <input type="text" class="screen" id="screen" disabled>
-        <div class="buttons">
-            <button onclick="clearScreen()">C</button>
-            <button onclick="backspace()">⌫</button>
-            <button onclick="insert('(')">(</button>
-            <button onclick="insert(')')">)</button>
-            <button onclick="insert('/')">/</button>
-            
-            <button onclick="insert('7')">7</button>
-            <button onclick="insert('8')">8</button>
-            <button onclick="insert('9')">9</button>
-            <button onclick="insert('*')">*</button>
-            <button onclick="insert('Math.sin(')">sin</button>
-            
-            <button onclick="insert('4')">4</button>
-            <button onclick="insert('5')">5</button>
-            <button onclick="insert('6')">6</button>
-            <button onclick="insert('-')">-</button>
-            <button onclick="insert('Math.cos(')">cos</button>
-            
-            <button onclick="insert('1')">1</button>
-            <button onclick="insert('2')">2</button>
-            <button onclick="insert('3')">3</button>
-            <button onclick="insert('+')">+</button>
-            <button onclick="insert('Math.tan(')">tan</button>
-            
-            <button onclick="insert('0')">0</button>
-            <button onclick="insert('.')">.</button>
-            <button onclick="insert('Math.log10(')">log</button>
-            <button onclick="insert('Math.sqrt(')">√</button>
-            <button onclick="calculate()">=</button>
-        </div>
-    </div>
 
-    <script>
-        function insert(value) {
-            document.getElementById("screen").value += value;
-        }
+  <nav class="navbar navbar-expand-lg fixed-top">
 
-        function clearScreen() {
-            document.getElementById("screen").value = "";
-        }
+      <div class="container">
 
-        function backspace() {
-            let screen = document.getElementById("screen");
-            screen.value = screen.value.slice(0, -1);
-        }
+          <a class="navbar-brand text-white" href="#">
 
-        function calculate() {
-            let screen = document.getElementById("screen");
-            try {
-                screen.value = eval(screen.value);
-            } catch {
-                screen.value = "Error";
-            }
-        }
-    </script>
+           <div class="log">Happy Holi By Developergtm</div>
+
+          </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" >
+
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+   
+
+      <div class="collapse navbar-collapse" >
+
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item active">
+
+            <a class="btn btn-light" href="#">Home <span class="sr-only">(current)</span></a>
+
+          </li>
+
+          <li class="nav-item">
+
+            <a class="nav-link" href="#">Contact</a>
+
+          </li>
+
+          <li class="nav-item">
+
+              <a class="nav-link" href="#">About</a>
+
+            </li>
+
+           
+
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+              More
+
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              <a class="dropdown-item" href="#">Action</a>
+
+              <a class="dropdown-item" href="#">Another action</a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item" href="#">Something else here</a>
+
+            </div>
+
+          </li>      
+
+      </div>
+
+      </div>
+
+    </nav>
+
+
+
+    <div class="myinfo">
+
+      <h1 class="holi">Hey there!</h1>
+
+      <h1>i am Goutam</h1>
+
+          <p>Wishing you and your loved ones a very colourful Holi<br>May you forget all your worries and enjoy this day to the fullest.<br> <h2 class="hue">Happy Holi!</h2></p>
+
+
+
+              <a href="#" class="btn btn-danger mr-3 hue">contact</a>
+
+              <a href="#" class="btn btn-light">Login</a>
+
+      </div>
+
+
+
+      <video autoplay loop play-inline muted  >
+
+          <source src="Happy Holi 2024 By CWS.mp4">
+
+              video is not load
+
+          </video>
+
+
+
+  
+
 </body>
+
+
+
 </html>
